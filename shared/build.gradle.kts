@@ -28,5 +28,10 @@ kotlin {
         commonTest.dependencies {
             implementation(libs.kotlin.test)
         }
+        // Headless Compose UI tests that drive the real screens (needs the Skiko runtime for this OS).
+        jvmTest.dependencies {
+            implementation(libs.compose.uiTest)
+            implementation(compose.desktop.currentOs)
+        }
     }
 }

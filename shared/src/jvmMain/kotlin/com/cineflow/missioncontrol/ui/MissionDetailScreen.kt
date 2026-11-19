@@ -135,7 +135,7 @@ fun MissionDetailScreen(state: AppState, missionId: Long) {
                     TableRow {
                         Cell(r.resource.nombre, 1.6f, bold = true, secondary = r.resource.categoria.label)
                         Cell("${r.cantidad} ${r.resource.unidad}", 1.2f, color = Palette.Cyan)
-                        Cell("Quedan ${r.resource.cantidad} en inventario", 1.3f, color = Palette.TextMuted)
+                        Cell("Stock: ${r.resource.cantidad}", 1.1f, color = Palette.TextMuted)
                         ActionIcon(Icons.Default.Close, "Liberar recurso", Palette.Danger) { releasing = r }
                     }
                 }
