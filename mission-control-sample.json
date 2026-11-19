@@ -1,0 +1,491 @@
+{
+  "version": 1,
+  "exportadoEn": "2026-11-19 10:00",
+  "misiones": [
+    {
+      "id": 1,
+      "nombre": "Artemis Horizonte I",
+      "destino": "Órbita lunar",
+      "fecha": "2026-03-10",
+      "duracion": 12,
+      "estado": "COMPLETADA",
+      "prioridad": "ALTA",
+      "descripcion": "Misión tripulada de sobrevuelo lunar para validar el soporte vital de la cápsula Horizonte en espacio profundo."
+    },
+    {
+      "id": 2,
+      "nombre": "Estación Orbital Atlas",
+      "destino": "Órbita baja terrestre (LEO)",
+      "fecha": "2026-10-01",
+      "duracion": 180,
+      "estado": "EN_CURSO",
+      "prioridad": "ALTA",
+      "descripcion": "Expedición de larga duración en la estación Atlas: experimentos de microgravedad y mantenimiento de módulos."
+    },
+    {
+      "id": 3,
+      "nombre": "Ares Pathfinder",
+      "destino": "Marte",
+      "fecha": "2027-07-15",
+      "duracion": 540,
+      "estado": "PREPARACION",
+      "prioridad": "CRITICA",
+      "descripcion": "Primera misión tripulada a la órbita marciana con descenso de un módulo de superficie para establecer una base temporal."
+    },
+    {
+      "id": 4,
+      "nombre": "Selene Base Logística",
+      "destino": "Polo sur lunar",
+      "fecha": "2026-12-12",
+      "duracion": 30,
+      "estado": "PLANIFICADA",
+      "prioridad": "ALTA",
+      "descripcion": "Despliegue de módulos habitables y prospección de hielo de agua en el cráter Shackleton."
+    },
+    {
+      "id": 5,
+      "nombre": "Odisea Joviana",
+      "destino": "Europa (Júpiter)",
+      "fecha": "2028-04-20",
+      "duracion": 2100,
+      "estado": "PLANIFICADA",
+      "prioridad": "MEDIA",
+      "descripcion": "Sonda robótica para estudiar el océano subsuperficial de Europa y buscar indicios de habitabilidad."
+    },
+    {
+      "id": 6,
+      "nombre": "Satélite Meteorológico Aurora",
+      "destino": "Órbita geoestacionaria",
+      "fecha": "2026-11-28",
+      "duracion": 3,
+      "estado": "PREPARACION",
+      "prioridad": "MEDIA",
+      "descripcion": "Puesta en órbita de un satélite de observación meteorológica de nueva generación."
+    },
+    {
+      "id": 7,
+      "nombre": "Hermes Reparación Telescopio",
+      "destino": "Órbita baja terrestre (LEO)",
+      "fecha": "2025-09-05",
+      "duracion": 9,
+      "estado": "COMPLETADA",
+      "prioridad": "MEDIA",
+      "descripcion": "Misión de servicio para sustituir giroscopios y la cámara principal de un telescopio espacial."
+    },
+    {
+      "id": 8,
+      "nombre": "Vulcano Prueba de Motores",
+      "destino": "Vuelo suborbital",
+      "fecha": "2026-06-01",
+      "duracion": 1,
+      "estado": "CANCELADA",
+      "prioridad": "BAJA",
+      "descripcion": "Vuelo de prueba del motor V-2 de nueva generación. Cancelado tras el fallo en el banco de pruebas."
+    },
+    {
+      "id": 9,
+      "nombre": "Rover Cráter Shackleton",
+      "destino": "Luna",
+      "fecha": "2027-02-03",
+      "duracion": 45,
+      "estado": "PLANIFICADA",
+      "prioridad": "MEDIA",
+      "descripcion": "Exploración del interior del cráter con un rover presurizado tripulado y recogida de muestras de regolito."
+    }
+  ],
+  "astronautas": [
+    {
+      "id": 1,
+      "nombre": "Elena Vázquez Ortiz",
+      "especialidad": "PILOTO",
+      "experiencia": 14,
+      "estado": "EN_MISION"
+    },
+    {
+      "id": 2,
+      "nombre": "Marcus Chen",
+      "especialidad": "INGENIERIA",
+      "experiencia": 9,
+      "estado": "EN_MISION"
+    },
+    {
+      "id": 3,
+      "nombre": "Amara Okafor",
+      "especialidad": "MEDICINA",
+      "experiencia": 7,
+      "estado": "EN_MISION"
+    },
+    {
+      "id": 4,
+      "nombre": "Lucía Fernández Ruiz",
+      "especialidad": "CIENCIA",
+      "experiencia": 11,
+      "estado": "DISPONIBLE"
+    },
+    {
+      "id": 5,
+      "nombre": "Javier Morales Gil",
+      "especialidad": "COMUNICACIONES",
+      "experiencia": 6,
+      "estado": "DISPONIBLE"
+    },
+    {
+      "id": 6,
+      "nombre": "Sofia Lindqvist",
+      "especialidad": "PILOTO",
+      "experiencia": 18,
+      "estado": "DISPONIBLE"
+    },
+    {
+      "id": 7,
+      "nombre": "Rahul Mehta",
+      "especialidad": "INGENIERIA",
+      "experiencia": 4,
+      "estado": "DISPONIBLE"
+    },
+    {
+      "id": 8,
+      "nombre": "Claire Dubois",
+      "especialidad": "CIENCIA",
+      "experiencia": 12,
+      "estado": "NO_DISPONIBLE"
+    },
+    {
+      "id": 9,
+      "nombre": "Diego Navarro Santos",
+      "especialidad": "MEDICINA",
+      "experiencia": 3,
+      "estado": "DISPONIBLE"
+    },
+    {
+      "id": 10,
+      "nombre": "Yuki Tanaka",
+      "especialidad": "COMUNICACIONES",
+      "experiencia": 8,
+      "estado": "DISPONIBLE"
+    }
+  ],
+  "recursos": [
+    {
+      "id": 1,
+      "nombre": "Combustible criogénico LH2",
+      "categoria": "COMBUSTIBLE",
+      "cantidadDisponible": 120000,
+      "unidad": "kg"
+    },
+    {
+      "id": 2,
+      "nombre": "Oxígeno líquido LOX",
+      "categoria": "OXIGENO",
+      "cantidadDisponible": 180000,
+      "unidad": "kg"
+    },
+    {
+      "id": 3,
+      "nombre": "Agua potable",
+      "categoria": "AGUA",
+      "cantidadDisponible": 4000,
+      "unidad": "litros"
+    },
+    {
+      "id": 4,
+      "nombre": "Raciones liofilizadas",
+      "categoria": "ALIMENTOS",
+      "cantidadDisponible": 2600,
+      "unidad": "raciones"
+    },
+    {
+      "id": 5,
+      "nombre": "Botiquín médico avanzado",
+      "categoria": "MEDICO",
+      "cantidadDisponible": 6,
+      "unidad": "unidades"
+    },
+    {
+      "id": 6,
+      "nombre": "Traje EVA",
+      "categoria": "EQUIPAMIENTO",
+      "cantidadDisponible": 4,
+      "unidad": "unidades"
+    },
+    {
+      "id": 7,
+      "nombre": "Módulo de comunicaciones de espacio profundo",
+      "categoria": "EQUIPAMIENTO",
+      "cantidadDisponible": 2,
+      "unidad": "unidades"
+    },
+    {
+      "id": 8,
+      "nombre": "Paneles solares de repuesto",
+      "categoria": "REPUESTOS",
+      "cantidadDisponible": 24,
+      "unidad": "unidades"
+    },
+    {
+      "id": 9,
+      "nombre": "Filtros de CO2",
+      "categoria": "REPUESTOS",
+      "cantidadDisponible": 0,
+      "unidad": "unidades"
+    },
+    {
+      "id": 10,
+      "nombre": "Kit de muestreo geológico",
+      "categoria": "EQUIPAMIENTO",
+      "cantidadDisponible": 15,
+      "unidad": "unidades"
+    }
+  ],
+  "incidencias": [
+    {
+      "id": 1,
+      "misionId": 1,
+      "fecha": "2026-03-14 09:42",
+      "tipo": "TECNICA",
+      "gravedad": "MEDIA",
+      "descripcion": "Fallo intermitente en el sensor de temperatura del módulo de servicio; se conmutó al sensor redundante."
+    },
+    {
+      "id": 2,
+      "misionId": 1,
+      "fecha": "2026-03-18 21:05",
+      "tipo": "MEDICA",
+      "gravedad": "BAJA",
+      "descripcion": "Tripulante con síntomas leves de mareo espacial, tratado a bordo sin consecuencias."
+    },
+    {
+      "id": 3,
+      "misionId": 2,
+      "fecha": "2026-10-14 03:20",
+      "tipo": "TECNICA",
+      "gravedad": "ALTA",
+      "descripcion": "Fuga menor en el circuito de refrigeración del módulo Atlas-2. Sección aislada y en seguimiento."
+    },
+    {
+      "id": 4,
+      "misionId": 2,
+      "fecha": "2026-11-02 16:47",
+      "tipo": "COMUNICACIONES",
+      "gravedad": "MEDIA",
+      "descripcion": "Pérdida del enlace en banda S durante 23 minutos por interferencia solar."
+    },
+    {
+      "id": 5,
+      "misionId": 2,
+      "fecha": "2026-11-17 11:10",
+      "tipo": "SEGURIDAD",
+      "gravedad": "CRITICA",
+      "descripcion": "Impacto de micrometeoroide en el panel solar 3B: pérdida del 18 % de generación eléctrica. EVA de reparación en evaluación."
+    },
+    {
+      "id": 6,
+      "misionId": 3,
+      "fecha": "2026-11-05 10:00",
+      "tipo": "TECNICA",
+      "gravedad": "MEDIA",
+      "descripcion": "Retraso en la entrega de las válvulas del sistema de propulsión principal."
+    },
+    {
+      "id": 7,
+      "misionId": 3,
+      "fecha": "2026-11-12 14:30",
+      "tipo": "MEDICA",
+      "gravedad": "ALTA",
+      "descripcion": "Lesión de rodilla de la especialista científica durante el entrenamiento en centrifugadora."
+    },
+    {
+      "id": 8,
+      "misionId": 6,
+      "fecha": "2026-11-15 08:15",
+      "tipo": "METEOROLOGICA",
+      "gravedad": "BAJA",
+      "descripcion": "Previsión de vientos en altura por encima del límite para la ventana de lanzamiento del 28/11."
+    },
+    {
+      "id": 9,
+      "misionId": 7,
+      "fecha": "2025-09-07 13:55",
+      "tipo": "NAVEGACION",
+      "gravedad": "MEDIA",
+      "descripcion": "Desviación de 0,4° en la maniobra de acoplamiento, corregida manualmente por la comandante."
+    },
+    {
+      "id": 10,
+      "misionId": 8,
+      "fecha": "2026-05-20 17:00",
+      "tipo": "TECNICA",
+      "gravedad": "CRITICA",
+      "descripcion": "Explosión en el banco de pruebas del motor V-2 durante el ensayo estático. Misión cancelada."
+    }
+  ],
+  "tripulacion": [
+    {
+      "misionId": 1,
+      "astronautaId": 1,
+      "rol": "Comandante"
+    },
+    {
+      "misionId": 1,
+      "astronautaId": 4,
+      "rol": "Especialista científica"
+    },
+    {
+      "misionId": 1,
+      "astronautaId": 5,
+      "rol": "Oficial de comunicaciones"
+    },
+    {
+      "misionId": 2,
+      "astronautaId": 1,
+      "rol": "Comandante"
+    },
+    {
+      "misionId": 2,
+      "astronautaId": 2,
+      "rol": "Ingeniero de vuelo"
+    },
+    {
+      "misionId": 2,
+      "astronautaId": 3,
+      "rol": "Oficial médica"
+    },
+    {
+      "misionId": 3,
+      "astronautaId": 6,
+      "rol": "Comandante"
+    },
+    {
+      "misionId": 3,
+      "astronautaId": 7,
+      "rol": "Ingeniero jefe"
+    },
+    {
+      "misionId": 3,
+      "astronautaId": 9,
+      "rol": "Médico de a bordo"
+    },
+    {
+      "misionId": 3,
+      "astronautaId": 8,
+      "rol": "Especialista científica"
+    },
+    {
+      "misionId": 4,
+      "astronautaId": 4,
+      "rol": "Jefa científica"
+    },
+    {
+      "misionId": 4,
+      "astronautaId": 10,
+      "rol": "Oficial de comunicaciones"
+    },
+    {
+      "misionId": 4,
+      "astronautaId": 7,
+      "rol": "Ingeniero de superficie"
+    },
+    {
+      "misionId": 7,
+      "astronautaId": 2,
+      "rol": "Ingeniero de vuelo"
+    },
+    {
+      "misionId": 7,
+      "astronautaId": 6,
+      "rol": "Comandante"
+    }
+  ],
+  "recursosAsignados": [
+    {
+      "misionId": 2,
+      "recursoId": 3,
+      "cantidad": 1200
+    },
+    {
+      "misionId": 2,
+      "recursoId": 4,
+      "cantidad": 900
+    },
+    {
+      "misionId": 2,
+      "recursoId": 5,
+      "cantidad": 2
+    },
+    {
+      "misionId": 2,
+      "recursoId": 9,
+      "cantidad": 40
+    },
+    {
+      "misionId": 3,
+      "recursoId": 1,
+      "cantidad": 300000
+    },
+    {
+      "misionId": 3,
+      "recursoId": 2,
+      "cantidad": 450000
+    },
+    {
+      "misionId": 3,
+      "recursoId": 3,
+      "cantidad": 6000
+    },
+    {
+      "misionId": 3,
+      "recursoId": 4,
+      "cantidad": 4800
+    },
+    {
+      "misionId": 3,
+      "recursoId": 5,
+      "cantidad": 4
+    },
+    {
+      "misionId": 3,
+      "recursoId": 6,
+      "cantidad": 4
+    },
+    {
+      "misionId": 3,
+      "recursoId": 7,
+      "cantidad": 1
+    },
+    {
+      "misionId": 4,
+      "recursoId": 3,
+      "cantidad": 800
+    },
+    {
+      "misionId": 4,
+      "recursoId": 4,
+      "cantidad": 360
+    },
+    {
+      "misionId": 4,
+      "recursoId": 6,
+      "cantidad": 2
+    },
+    {
+      "misionId": 4,
+      "recursoId": 10,
+      "cantidad": 10
+    },
+    {
+      "misionId": 4,
+      "recursoId": 8,
+      "cantidad": 6
+    },
+    {
+      "misionId": 6,
+      "recursoId": 1,
+      "cantidad": 25000
+    },
+    {
+      "misionId": 6,
+      "recursoId": 2,
+      "cantidad": 40000
+    }
+  ]
+}

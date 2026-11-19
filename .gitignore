@@ -1,0 +1,61 @@
+# ---- Gradle ----
+.gradle/
+**/build/
+!src/**/build/
+!gradle/wrapper/gradle-wrapper.jar
+local.properties
+
+# ---- Kotlin ----
+.kotlin/
+*.class
+hs_err_pid*.log
+replay_pid*.log
+
+# ---- IntelliJ IDEA ----
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+
+# ---- Compose Multiplatform / native distributions ----
+*.dmg
+*.msi
+*.deb
+*.exe
+
+# ---- Local databases (the app creates its SQLite DB at runtime; never commit one) ----
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+*.sqlite
+*.sqlite3
+
+# ---- Exports generated while testing (the sample JSON is kept) ----
+mission-control-export*.json
+
+# ---- Secrets / environment ----
+.env
+.env.*
+*.pem
+*.key
+*.keystore
+*.jks
+secrets.properties
+
+# ---- OS / misc ----
+.DS_Store
+Thumbs.db
+*.log
+captures
+.externalNativeBuild
+.cxx
+xcuserdata
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+!*.xcodeproj/xcshareddata/
+!*.xcodeproj/project.xcworkspace/
+!*.xcworkspace/contents.xcworkspacedata
+**/xcshareddata/WorkspaceSettings.xcsettings
+node_modules/
