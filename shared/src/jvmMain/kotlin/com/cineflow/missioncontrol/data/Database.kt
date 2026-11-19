@@ -26,6 +26,10 @@ class Database(val path: Path = defaultPath()) : AutoCloseable {
         val config = SQLiteConfig().apply { enforceForeignKeys(true) }
         connection = DriverManager.getConnection("jdbc:sqlite:${path.toAbsolutePath()}", config.toProperties())
         connection.createStatement().use { it.execute("PRAGMA foreign_keys = ON") }
+        // norm(text): accent/case-insensitive comparison for searches (SQLite LIKE only folds ASCII).
+        org.sqlite.Function.create(connection, "norm", object : org.sqlite.Function() {
+            override fun xFunc() = result(TextSearch.normalize(value_text(0) ?: ""))
+        })
         createSchema()
     }
 

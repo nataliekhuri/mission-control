@@ -131,6 +131,48 @@ class DataLayerTest {
     }
 
     @Test
+    fun dataPersistsAfterReopeningTheDatabase() {
+        val file = dir.resolve("persist.db")
+        Database(file).use { first ->
+            val r = Repository(first)
+            val m = r.insertMission(mission("Persistente"))
+            val a = r.insertAstronaut(Astronaut(0, "Ana", Specialty.MEDICINA, 5, AstronautStatus.DISPONIBLE))
+            r.assignAstronaut(m, a, "Médica")
+        }
+        Database(file).use { second -> // simulates closing and reopening the application
+            val r = Repository(second)
+            val m = r.getMissions().single()
+            assertEquals("Persistente", m.nombre)
+            assertEquals("Médica", r.getCrew(m.id).single().rol)
+            assertEquals(1, second.count("PRAGMA foreign_keys"))
+        }
+    }
+
+    @Test
+    fun searchIgnoresCaseAndAccents() {
+        repo.insertMission(mission("Satélite Aurora").copy(destino = "Órbita geoestacionaria"))
+        repo.insertMission(mission("Ares"))
+        assertEquals(1, repo.getMissions(search = "orbita").size)
+        assertEquals(1, repo.getMissions(search = "SATELITE").size)
+        assertEquals(0, repo.getMissions(search = "100%").size) // % is literal, not a wildcard
+        repo.insertAstronaut(Astronaut(0, "Lucía Fernández", Specialty.INGENIERIA, 3, AstronautStatus.DISPONIBLE))
+        repo.insertAstronaut(Astronaut(0, "Marcus", Specialty.PILOTO, 3, AstronautStatus.DISPONIBLE))
+        assertEquals(1, repo.getAstronauts(search = "lucia fernandez").size)
+        assertEquals(1, repo.getAstronauts(search = "ingenieria").size) // specialty match
+    }
+
+    @Test
+    fun impossibleDatesAreRejected() {
+        assertFailsWith<ValidationException> { repo.insertMission(mission().copy(fecha = "2027-02-30")) }
+        assertFailsWith<ValidationException> { repo.insertMission(mission().copy(fecha = "30/01/2027")) }
+        val m = repo.insertMission(mission())
+        assertFailsWith<ValidationException> {
+            repo.insertIncident(Incident(0, m, "2027-01-01 25:00", IncidentType.TECNICA, Severity.BAJA, "x"))
+        }
+        repo.insertMission(mission("Bisiesto").copy(fecha = "2028-02-29"))
+    }
+
+    @Test
     fun invalidJsonIsRejectedWithoutChanges() {
         val bad = dir.resolve("bad.json").toFile()
         bad.writeText("{ not json")

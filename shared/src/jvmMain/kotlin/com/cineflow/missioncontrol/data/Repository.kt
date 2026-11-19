@@ -75,8 +75,8 @@ class Repository(private val db: Database) {
         val where = mutableListOf<String>()
         val params = mutableListOf<Any?>()
         if (search.isNotBlank()) {
-            where += "(m.nombre LIKE ? OR m.destino LIKE ? OR m.descripcion LIKE ?)"
-            val like = "%${search.trim()}%"
+            where += "(norm(m.nombre) LIKE ? ESCAPE '!' OR norm(m.destino) LIKE ? ESCAPE '!' OR norm(m.descripcion) LIKE ? ESCAPE '!')"
+            val like = TextSearch.likePattern(search)
             repeat(3) { params += like }
         }
         if (status != null) { where += "m.estado = ?"; params += status }
@@ -153,13 +153,12 @@ class Repository(private val db: Database) {
         val params = mutableListOf<Any?>()
         if (search.isNotBlank()) {
             // Search by name, or by specialty label typed by the user (e.g. "pilot", "medic").
-            val matchingSpecialties = Specialty.entries.filter {
-                it.label.contains(search.trim(), ignoreCase = true) || it.name.contains(search.trim(), ignoreCase = true)
-            }
+            val term = TextSearch.normalize(search.trim())
+            val matchingSpecialties = Specialty.entries.filter { TextSearch.normalize(it.label).contains(term) }
             val specClause = if (matchingSpecialties.isEmpty()) "" else
                 " OR a.especialidad IN (${matchingSpecialties.joinToString(",") { "'${it.name}'" }})"
-            where += "(a.nombre LIKE ?$specClause)"
-            params += "%${search.trim()}%"
+            where += "(norm(a.nombre) LIKE ? ESCAPE '!'$specClause)"
+            params += TextSearch.likePattern(search)
         }
         if (status != null) { where += "a.estado = ?"; params += status }
         val sql = buildString {
@@ -258,7 +257,7 @@ class Repository(private val db: Database) {
     fun getResources(search: String = "", category: ResourceCategory? = null): List<Resource> {
         val where = mutableListOf<String>()
         val params = mutableListOf<Any?>()
-        if (search.isNotBlank()) { where += "r.nombre LIKE ?"; params += "%${search.trim()}%" }
+        if (search.isNotBlank()) { where += "norm(r.nombre) LIKE ? ESCAPE '!'"; params += TextSearch.likePattern(search) }
         if (category != null) { where += "r.categoria = ?"; params += category }
         val sql = buildString {
             append(resourceSelect)
@@ -371,8 +370,9 @@ class Repository(private val db: Database) {
         if (missionId != null) { where += "i.mision_id = ?"; params += missionId }
         if (severity != null) { where += "i.gravedad = ?"; params += severity }
         if (search.isNotBlank()) {
-            where += "(i.descripcion LIKE ? OR m.nombre LIKE ?)"
-            params += "%${search.trim()}%"; params += "%${search.trim()}%"
+            where += "(norm(i.descripcion) LIKE ? ESCAPE '!' OR norm(m.nombre) LIKE ? ESCAPE '!')"
+            val like = TextSearch.likePattern(search)
+            params += like; params += like
         }
         val orderBy = when (sort) {
             IncidentSort.FECHA_DESC -> "i.fecha DESC"

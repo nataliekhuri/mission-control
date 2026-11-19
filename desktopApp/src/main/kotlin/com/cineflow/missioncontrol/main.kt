@@ -8,7 +8,17 @@ import androidx.compose.ui.window.rememberWindowState
 
 fun main() {
     // Opens (or creates on first launch) the SQLite database and its tables. No data is preloaded.
-    val container = AppContainer()
+    val container = try {
+        AppContainer()
+    } catch (e: Exception) {
+        javax.swing.JOptionPane.showMessageDialog(
+            null,
+            "No se pudo abrir o crear la base de datos SQLite:\n${e.message}",
+            "Mission Control - Error al iniciar",
+            javax.swing.JOptionPane.ERROR_MESSAGE,
+        )
+        return
+    }
 
     application {
         Window(

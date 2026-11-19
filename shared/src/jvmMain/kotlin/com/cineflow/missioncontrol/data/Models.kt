@@ -5,6 +5,8 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.time.format.DateTimeParseException
+import java.time.format.ResolverStyle
+import java.text.Normalizer
 
 /** Every enum shown in the UI exposes a human readable label. The enum name is what is stored in SQLite/JSON. */
 interface Labeled {
@@ -155,12 +157,25 @@ enum class IncidentSort(override val label: String) : Labeled {
     GRAVEDAD("Gravedad (mayor primero)"),
 }
 
+/** Text normalization used by searches: lower case and without accents ("Órbita" -> "orbita"). */
+object TextSearch {
+    private val marks = Regex("""\p{M}+""")
+
+    fun normalize(text: String): String =
+        Normalizer.normalize(text, Normalizer.Form.NFD).replace(marks, "").lowercase()
+
+    /** LIKE pattern for the normalized text. '!' is the ESCAPE character, so typed % and _ are literal. */
+    fun likePattern(search: String): String =
+        "%" + normalize(search.trim()).replace("!", "!!").replace("%", "!%").replace("_", "!_") + "%"
+}
+
 /** Thrown for any business/validation rule violation. Its message is shown to the user. */
 class ValidationException(message: String) : Exception(message)
 
 object Dates {
-    val DATE: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-    val DATE_TIME: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")
+    // STRICT: rejects impossible dates such as 2027-02-30 instead of silently adjusting them.
+    val DATE: DateTimeFormatter = DateTimeFormatter.ofPattern("uuuu-MM-dd").withResolverStyle(ResolverStyle.STRICT)
+    val DATE_TIME: DateTimeFormatter = DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm").withResolverStyle(ResolverStyle.STRICT)
     private val DISPLAY_DATE = DateTimeFormatter.ofPattern("dd/MM/yyyy")
     private val DISPLAY_DATE_TIME = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")
 
